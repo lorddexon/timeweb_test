@@ -28,7 +28,7 @@ export default {
 				this.$store.commit('REMOVE_DOM_ELEMENT')
 			}
 		}
-    }
+	}
 }
 </script>
 

@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        template: [],
+        template: JSON.parse(localStorage.getItem('template')) || [],
         startPoint: {x: null, y: null},
         currentPoint: {x: null, y: null},
         dragElement: null,

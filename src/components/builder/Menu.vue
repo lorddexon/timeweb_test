@@ -9,6 +9,10 @@
                 @mouseup="cancelDraggingElement()">
                 {{item.name}}
             </li>
+            <li class="builder__menu_item builder__menu_item-save"
+                @click="saveTemplate">
+                {{this.saveText}}
+            </li>
         </ul>
     </div>
 </template>
@@ -18,6 +22,7 @@ import {mapGetters} from 'vuex';
 export default {
     data() {
         return {
+            saveText: 'SAVE',
             menuItems: [
                 {element: 'ElementBlock', name: 'Block'}, 
                 {element: 'ElementText', name: 'Text'},
@@ -45,6 +50,13 @@ export default {
                 this.$store.commit('REMOVE_DOM_ELEMENT')  
                 this.$store.commit('SET_ELEMENT_STATE', false)
             }
+        },
+        saveTemplate() {
+            this.saveText = 'OK';
+            this.$emit('saveTemplate')
+            setTimeout(() => {
+                this.saveText = "SAVE";
+            }, 1000)
         }
     }
 }
@@ -79,6 +91,12 @@ export default {
             user-select: none;
             &:hover {
                 background: #EAECEF;
+            }
+            &.builder__menu_item-save {
+                background: lightgreen;
+                &:hover {
+                    background: #c1fdc1;
+                }
             }
         }
     }
